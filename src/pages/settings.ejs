@@ -1,0 +1,30 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<div class="container margin-top-xl">
+ <div class="row">
+   <div class="col-md-12">
+     <h4><%= user.username %> Ayarları</h4>
+     <form method="POST" enctype="multipart/form-data" action="/change/profile-photo/<%= user.token %>/<%= user.secret %>">
+     <div class="file-container">
+      <label for="file">Profil Fotoğrafını değiştir</label>
+      <input id="file" class="input-file" type="file" class="form-control-file" name="uploaded_file"><br> 
+    </div>
+  <button class="margin-top submit-btn" type="submit">
+    Profil Fotoğrafını değiştir
+  </button>
+  </form>
+  <form method="POST" action="/change/password/<%= user.token %>/<%= user.secret %>">
+  <div class="github-card margin-top-xl">
+    <h4>
+      Şifre değiştir
+    </h4>
+    <input type="password" id="oldpassword" name="oldpassword" class="input-github margin-top" placeholder="Eski şifreniz">
+    <input type="password" id="newpassword" name="newpassword" class="input-github margin-top" placeholder="Yeni şifreniz">
+    <button type="submit" class="cancel-btn margin-top">
+      Şifreyi değiştir
+    </button>
+  </div>
+</form>
+   </div>
+  </div>  
+</div>
