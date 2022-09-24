@@ -1,0 +1,23 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+  <div class="container margin-top">
+    <h4>Dosya Ekle</h4>
+    <form method="POST" enctype="multipart/form-data" action="/add/file/<%= repo.token %>/<%= user.token %>/withFile">
+    <input class="input-github" type="text" name="filename" id="filename" placeholder="Dosya adı">
+    <div class="file-container">
+      <label for="file">Dosya yükle</label>
+      <input id="file" class="input-file" type="file" class="form-control-file" name="uploaded_file"><br> 
+    </div>
+      <input type="submit" class="submit-btn" value="Dosyayı Yükle">
+    </form>
+    ya da
+    <div class="margin-top">
+      <form method="POST" action="/add/file/<%= repo.token %>/<%= user.token %>/withOutFile"
+      <div class="github-card">
+          <input class="input-github" type="text" name="filename" id="filename" placeholder="Dosya adı">
+         <textarea id="code" name="code" class="input-github margin-top">Kod</textarea>
+         <input type="submit" class="submit-btn margin-top" value="Dosya ekle">
+      </div>
+    </div>
+  </div>
