@@ -1,0 +1,20 @@
+<%- include("../partials/head") %>
+<div class="container m-t">
+ <div class="row justify-content-center">
+   <div class="col-md-8">
+     <div class="card margin-top bg-dark">
+       <div class="card-body">
+         <form method="POST" action="/register">
+         <label>Kullanıcı adı</label>
+         <input type="text" id="username" name="username" class="form-control" required>
+         <label>Email</label>
+         <input type="email" name="email" id="email" class="form-control" required>
+         <label>Şifre</label>
+         <input type="password" name="password" id="password" class="form-control" required>
+         <input type="submit" class="margin-top btn btn-dark" value="Kayıt ol">
+         </form>
+       </div>
+     </div>
+   </div>
+  </div> 
+</div>
