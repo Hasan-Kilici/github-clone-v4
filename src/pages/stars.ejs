@@ -1,0 +1,79 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+<div class="container margin-top">
+<div class="row">
+ <div class="col-md-3">
+   <img class="w-100 circle" src="<%= profile.profile_photo %>"><br><br>
+   <div id="profile">
+   <h4><%= profile.username %></h4>
+   <p class="text-muted"><%= profile.url %></p>
+  <pre class="w-100 text-count"><%= profile.bio %></pre>
+  <% if(user == false){%>
+  <!-- Hiç bir şey -->  
+  <% } else { %>
+    <% if(profile.token == user.token ){ %>
+  <button class="w-100 github-btn" onclick="editProfile()">
+    Edit Profile
+  </button>   
+    <% } else { %>
+  <% for(let i = 0; i <= 5; i++){ %>
+  <% if( profile._id != user.followed[i]){ %>
+    <form method="POST" action="/follow/user/<%= profile._id %>/<%= profile.url %>">
+     <button type="submit" class="<% if(i == 0){ %> active <% } else { %> SSS <% } %> w-100 github-btn" id="s<%= profile._id %>">
+    Follow
+  </button>
+  </form>
+  <% } else { %>
+  <style>
+    #s<%- profile._id %>{
+      display:none;
+      }
+   </style>
+     <form method="POST" action="/unfollow/user/<%= profile._id %>/<%= profile.url %>">
+  <button type="submit" class="<% if(i == 0){ %> active <% } else { %> SSS <% } %> w-100 github-btn" >
+    Unfollow
+  </button>
+  </form>
+  <% } %>
+  <% } %>
+    <% } %>
+  <% } %><br>
+ <div class="margin-top social">
+   <i class="fas fa-user-friends"></i> <label class="text-count"><%= profile.followersCount %></label> 
+   Followers · <label class="text-count"><%= profile.followedCount %></label> 
+   Followed 
+   <hr>
+  </div>
+   </div>
+   <% if(profile.token == user.token){ %>
+     <div id="edit-profile">
+       <form method="POST" action="/edit/profile/<%= user.token %>">
+       <h5>Bio</h5>
+       <textarea id="bio" name="bio" class="textarea w-100" maxlength="125"></textarea>
+       <div class="margin-top">
+       <input type="submit" class="submit-btn" value="Save">
+       <input type="reset" class="cancel-btn" value="Cancel">
+       </div>
+       </form>
+     </div>
+    <% } %>
+</div>
+  <div class="col-md-9"> 
+  <div id="stared">
+  
+  </div>
+  </div>
+  </div>
+  </div>
+  <script>
+  let stars = <%- JSON.stringify(stars) %>
+  let starBox = document.getElementById("stared");
+  for(let i = 0;i < stars.length;i++){
+    starBox.innerHTML += `<div class="repo-card">
+                          <a style="text-decoration:none;color:#c9d1d9;" href="/s/<%= profile.url %>/${stars[i].url}">${stars[i].name}</a>
+                          <div class="margin-top repo-icon ">
+                          <i class="far fa-star"></i> ${stars[i].starCount}
+                          `;
+  }
+  </script>
