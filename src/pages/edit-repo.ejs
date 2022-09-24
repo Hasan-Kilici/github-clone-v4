@@ -1,0 +1,15 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+  <div class="container"><br>
+   <h2 ><%= repo.name  %></h2>
+   <div class="github-card">
+    <form method="POST" action="/edit/repo/<%= repo.token %>/<%= user.token %>">
+        <label>Repository Name</label>
+      <input type="text" class="input-github" placeholder="<%= repo.name %>" id="name" name="name">
+       <label>Description</label>
+      <input type="text" class="input-github" placeholder"<%= repo.description %>" id="description" name="description">
+      <input type="submit" class="submit-btn margin-top" value="Düzenle">
+     </form>
+   </div>
+  </div>
