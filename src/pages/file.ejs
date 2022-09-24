@@ -1,0 +1,34 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+<div class="container margin-top">
+  <h4><%= file.filename %></h4>
+  <div class="github-card">
+<pre class="w-100"><%= code %></pre>
+  </div>
+  <% if(profile.token == user.token){ %>
+
+    <form style="width:100px;float:left;margin-right:10px;" method="POST" action="/delete/file/<%= file._id %>">
+      <input type="submit" class="btn-danger margin-top btn" value="Dosyayı sil">
+    </form>  
+    <button style="width:150px;" id="btn" class="cancel-btn margin-top" onclick="editThisCode()">
+       Dosyayı düzenle
+    </button>
+   <div id="secret">
+    <form method="POST" action="/edit/file/<%= file.token %>">
+     <textarea style="margin-bottom:3vh; height:50vh;" class="input-github" id="code" name="code"><%= code %></textarea>
+     <input type="submit" class="submit-btn" value="Dosyayı düzenle">
+  </form>
+   </div>
+  <% } %>
+  
+
+</div>
+<style>
+@media only screen and (min-width:800px){
+  .container{
+    width:min(100% - 28%);
+    margin-inline: auto;
+  }
+}
+</style>
