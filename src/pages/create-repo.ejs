@@ -1,0 +1,14 @@
+<%- include("../partials/head") %>
+<%- include("../partials/navbar") %>
+<%- include("../partials/profile-navbar") %>
+<div class="container">
+<div class="github-card">
+  <form method="POST" action="/create/repo/<%= user.token %>">
+    <label>Repository name</label>
+    <input type="text" class="input-github" id="name" name="name" required> 
+    <label>Description</label>
+    <input type="text" class="input-github" id="description" name="description">
+    <input type="submit" class="submit-btn margin-top" value="Create Repository">
+  </form>  
+</div>  
+</div>
