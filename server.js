@@ -11,7 +11,7 @@ const fetch = require("node-fetch");
 const lang = require("password-locking");
 var CookieParser = require("cookie-parser");
 
-app.use(CookieParser());
+app.use(CookieParser()); 
 //Port
 //Body Parser
 app.use(bodyParser.json()).use(
